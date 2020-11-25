@@ -16,18 +16,9 @@ function createWindow() {
 
   win.loadURL('http://localhost:6063')
   // win.webContents.openDevTools();
-  // win.
 }
 
 app.on('ready', () => {
-  // const tray = new Tray(resolve(__dirname, 'assets', 'magic.ico'));
-
-  // const contextMenu = Menu.buildFromTemplate([
-  //   { label: 'Item1', type: 'radio', checked: true }
-  // ]);
-
   createWindow();
-
-  // tray.setContextMenu(contextMenu);
 })
 
