@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Dashboard from './pages/Dashboard';
+import Home from './pages/Home';
+import Layout from './components/Layout'
 
 const Routes = () => {
   const [authentication, setAuthentication] = useState(true);
@@ -13,18 +15,18 @@ const Routes = () => {
     )} />
   )
 
-  // const routeOptions = [
-  //   { name: "Dashboard", path: "/dashboard", component: <Dashboard search={search} setSearch={setSearch}/> },
-  //   { name: "Clientes", path: "/clientes", component: <Clientes search={search} setSearch={setSearch}/> },
-  //   { name: "Domínios", path: "/dominios", component: <Dominios search={search} setSearch={setSearch}/> },
-  //   { name: "Notificações", path: "/notificacoes", component: <Notificações search={search} setSearch={setSearch}/> },
-  //   { name: "Contato", path: "/contato", component: <Contato search={search} setSearch={setSearch}/> },
-  // ]
+  const routeOptions = [
+    { name: "Home", path: "/home", component: <Home search={search} setSearch={setSearch}/> },
+    // { name: "Clientes", path: "/clientes", component: <Clientes search={search} setSearch={setSearch}/> },
+    // { name: "Domínios", path: "/dominios", component: <Dominios search={search} setSearch={setSearch}/> },
+    // { name: "Notificações", path: "/notificacoes", component: <Notificações search={search} setSearch={setSearch}/> },
+    // { name: "Contato", path: "/contato", component: <Contato search={search} setSearch={setSearch}/> },
+  ]
 
 
   return (<Switch>
     <Route exact path="/" component={() => <Dashboard/> } />
-    {/* <Route path={["/dashboard", "/clientes", "/dominios", "/contato", "/notificacoes"]} render={props => (
+    <Route path={["/home"]} render={props => (
       <Layout {...props} name={(routeOptions.find(route => route.path === props.location.pathname)).name} search={search} setSearch={setSearch}>
         <Switch>
           {routeOptions.map((route, index) => (
@@ -32,7 +34,7 @@ const Routes = () => {
           ))}
         </Switch>
       </Layout>)}>
-    </Route> */}
+    </Route>
   </Switch>)
 }
 

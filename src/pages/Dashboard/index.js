@@ -1,18 +1,14 @@
 import React from 'react';
 
+import { useHistory } from "react-router-dom";
+
 import { Container } from './styles';
 
-import { Titlebar, Color } from 'custom-electron-titlebar';
-
 function Dashboard() {
-  let MyTitleBar = new Titlebar({
-    backgroundColor: Color.fromHex('#535bfe')
-  });
-
-  MyTitleBar.updateTitle('Our Code World Tutorials Rock !');
-
+  const history = useHistory()
   return <Container>
     Dashboard
+    <button onClick={() => history.push('/home')}>Login</button>
   </Container>;
 }
 

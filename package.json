@@ -7,8 +7,6 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.2.2",
-    "custom-electron-titlebar": "^3.2.5",
-    "electron-is-dev": "^1.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -17,7 +15,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "concurrently \"set PORT=6063 && react-scripts start\" \"wait-on http://localhost:6063 && electron main.js\"",
+    "start": "concurrently \"react-scripts start\" \"wait-on http://localhost:6063 && electron .\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

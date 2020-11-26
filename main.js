@@ -3,8 +3,8 @@ const { app, Tray, Menu, BrowserWindow } = require('electron');
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
-    altura: 600,
+    width: 1100,
+    height: 600,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true
@@ -12,11 +12,10 @@ function createWindow() {
     icon: resolve(__dirname, 'src/assets/logos', 'magic-icon.png'),
     alwaysOnTop: true,
     title: "Magic Deck Control",
-    titleBarStyle: "hidden"
   });
 
   win.loadURL('http://localhost:6063')
-  // win.webContents.openDevTools();
+  win.webContents.openDevTools();
 }
 
 app.on('ready', () => {
