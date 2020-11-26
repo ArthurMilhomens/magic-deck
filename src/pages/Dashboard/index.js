@@ -2,10 +2,11 @@ import React from 'react';
 
 import { Container } from './styles';
 
+import { Titlebar, Color } from 'custom-electron-titlebar';
+
 function Dashboard() {
-  const customTitlebar = require('custom-electron-titlebar');
-  let MyTitleBar = new customTitlebar.Titlebar({
-    backgroundColor: customTitlebar.Color.fromHex('#03a9f4')
+  let MyTitleBar = new Titlebar({
+    backgroundColor: Color.fromHex('#535bfe')
   });
 
   MyTitleBar.updateTitle('Our Code World Tutorials Rock !');
