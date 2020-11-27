@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react'
 
 import { useHistory } from "react-router-dom";
 
@@ -6,8 +6,8 @@ import { Container } from './styles';
 
 function Dashboard() {
   const history = useHistory()
-  return <Container>
-    Dashboard
+  return <Container id="container">
+    
     <button onClick={() => history.push('/home')}>Login</button>
   </Container>;
 }

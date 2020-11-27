@@ -8,4 +8,4 @@ function Home() {
   </Container>;
 }
 
-export default Dashboard;
+export default Home;
