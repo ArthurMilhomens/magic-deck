@@ -8,6 +8,7 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+    z-index: 1;
   }
   @font-face {
     font-family: 'Poppins';
