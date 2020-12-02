@@ -32,5 +32,11 @@ export const Container = styled.div`
     font: 1rem 'Poppins',sans-serif;
     text-transform: uppercase;
     border-radius: 25px;
+    cursor: pointer;
+
+    :hover {
+      background: linear-gradient(to top right, #3a008c, #6610de);
+      border: 2px solid #6610de;
+    }
   }
 `;

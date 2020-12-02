@@ -4,9 +4,13 @@ import Header from './Header';
 
 import { Container } from './styles';
 
-function Layout() {
+function Layout({ children }) {
+
   return <Container>
     <Header />
+    <div className="content">
+      {children}
+    </div>
   </Container>;
 }
 

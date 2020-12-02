@@ -9,10 +9,12 @@ import AvatarList from '../../components/AvatarList'
 import { Container } from './styles';
 
 function Dashboard() {
-  console.log(window.THREE)
-  const history = useHistory()
 
-  const [vantaEffect, setVantaEffect] = useState(0)
+  const history = useHistory();
+  const [char, setChar] = useState('');
+  const [vantaEffect, setVantaEffect] = useState(0);
+
+  //VantaJS configs
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(FOG({
@@ -30,10 +32,16 @@ function Dashboard() {
     }
   }, [vantaEffect])
 
+  function Login() {
+    localStorage.setItem('char', JSON.stringify({ img: char, avatar: char.split('/')[3].split('.')[0]}));
+    localStorage.setItem('log', true);
+    history.push('/home');
+  };
+  
   return <Container id="container">
     <h1>Escolha o seu avatar</h1>
-    <AvatarList />
-    <button onClick={() => history.push('/home')}>Confirmar</button>
+    <AvatarList char={char} setChar={setChar}/>
+    <button disabled={char === ''} onClick={() => Login()}>Confirmar</button>
   </Container>;
 }
 

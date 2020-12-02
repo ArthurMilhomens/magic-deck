@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
-import Layout from './components/Layout'
+import Layout from './components/Layout';
+
+import { useHistory } from "react-router-dom";
 
 const Routes = () => {
-  const [authentication, setAuthentication] = useState(true);
-  const [search, setSearch] = useState(0)
+  const authenticate = localStorage.getItem('log') === null ? false : true;
+  const history = useHistory();
+
+  authenticate && history.push('/home')
 
   const ProtectRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
@@ -16,18 +20,13 @@ const Routes = () => {
   )
 
   const routeOptions = [
-    { name: "Home", path: "/home", component: <Home search={search} setSearch={setSearch}/> },
-    // { name: "Clientes", path: "/clientes", component: <Clientes search={search} setSearch={setSearch}/> },
-    // { name: "Domínios", path: "/dominios", component: <Dominios search={search} setSearch={setSearch}/> },
-    // { name: "Notificações", path: "/notificacoes", component: <Notificações search={search} setSearch={setSearch}/> },
-    // { name: "Contato", path: "/contato", component: <Contato search={search} setSearch={setSearch}/> },
-  ]
-
+    { name: "Home", path: "/home", component: <Home/> },
+  ];
 
   return (<Switch>
     <Route exact path="/" component={() => <Dashboard/> } />
     <Route path={["/home"]} render={props => (
-      <Layout {...props} name={(routeOptions.find(route => route.path === props.location.pathname)).name} search={search} setSearch={setSearch}>
+      <Layout {...props} name={(routeOptions.find(route => route.path === props.location.pathname)).name}>
         <Switch>
           {routeOptions.map((route, index) => (
             <ProtectRoute key={index} path={route.path} component={() => route.component} />

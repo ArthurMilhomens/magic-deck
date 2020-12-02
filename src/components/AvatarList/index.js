@@ -8,13 +8,12 @@ import gahiji from '../../assets/avatar/gahiji.jpeg';
 
 import { Container, Avatar } from './styles';
 
-function AvatarList() {
-  const { resolve } = require('path');
+function AvatarList({ char, setChar }) {
 
   const avatarOptions = [ajani, avacyn, obnixilis, sarkhan, gahiji];
 
   return <Container>
-    {avatarOptions.map((element, index) => <Avatar key={index}>
+    {avatarOptions.map((element, index) => <Avatar key={index} className={char === element ? 'ativo' : ''} onClick={() => setChar(element)}>
       <img alt={index} src={element}/>
     </Avatar>) }
   </Container>
