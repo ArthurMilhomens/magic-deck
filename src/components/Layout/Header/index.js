@@ -16,7 +16,6 @@ function Header() {
 
   return <Container>
     <div className={theme.avatar}>
-      menu
       <Avatar onClick={() => logout()}>
         <img alt={theme.avatar} src={theme.img} />
       </Avatar>

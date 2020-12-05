@@ -36,7 +36,7 @@ export const Container = styled.div`
 
     :hover {
       background: linear-gradient(to top right, #3a008c, #6610de);
-      border: 2px solid #6610de;
+      border: 2px solid linear-gradient(to top right, #3a008c, #6610de);
     }
   }
 `;
