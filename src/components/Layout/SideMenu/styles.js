@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   .open-menu {
-    width: 25vw;
+    width: 170px;
   }
 
   .close-menu {
-    width: 5vw;
+    width: 50px;
   }
 
   .sarkhan {
