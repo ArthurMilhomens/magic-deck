@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Container } from './styles';
 
 import Deck from '../../components/Deck';
+import DeckList from '../../components/DeckList';
+import Filter from '../../components/Filter';
 import magic from '../../services/magic';
 
 function Home() {
 
+  const [deck, setDeck] = useState(localStorage.getItem('deck'));
+
   useEffect(() => {
-    magic.get('/cards?id=[cd236ea8-c7a6-5b66-8190-996c09f8c57e,4ce865a1-1518-5629-97a8-ac80dc2e9230]')
+    magic.get('/cards/5c3d57d1-1031-45e0-97d1-8e8e3e6ab516')
       .then(res => {
         console.log(res)
       })
@@ -19,7 +23,7 @@ function Home() {
   
   return <Container>
     <div>
-      <p>home</p>
+      {deck ? <DeckList/> : <Filter />}
     </div>
     <Deck/>
   </Container>;
