@@ -19,13 +19,11 @@ function Home() {
       .catch(err => {
         console.log(err)
       })
-  },[]);
-  
+  }, []);
+
   return <Container>
-    <div>
-      {deck ? <DeckList/> : <Filter />}
-    </div>
-    <Deck/>
+    {deck ? <DeckList /> : <Filter />}
+    <Deck />
   </Container>;
 }
 

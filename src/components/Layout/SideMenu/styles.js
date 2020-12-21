@@ -14,6 +14,13 @@ export const Container = styled.div`
       color: red;
       fill: red;
     }
+
+    img {
+      :hover {
+        box-shadow: 0px 1px 8px red;
+        transition: 0.3s;
+      }
+    }
   }
 `;
 
@@ -62,10 +69,5 @@ export const Avatar = styled.div`
     object-fit:cover;
     transition: 0.3s;
     overflow: hidden;
-
-    :hover {
-      box-shadow: 0px 1px 8px #440000;
-      transition: 0.3s;
-    }
   }
 `;
