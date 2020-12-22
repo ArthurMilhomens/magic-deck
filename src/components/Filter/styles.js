@@ -38,7 +38,7 @@ export const Container = styled.div`
     border: none;
     cursor: pointer;
     align-self: flex-end;
-    border-top-left-radius: 40px;
+    border-top-left-radius: 7px;
   }
 
 //Avatar prefs
@@ -55,8 +55,14 @@ export const Container = styled.div`
       }
 
       :focus{
-        box-shadow: 0px 6px 6px -5px red;
-        border-bottom: 2px solid red;
+        /* box-shadow: 0px 6px 6px -5px red; */
+        border-bottom: none;
+        background-color: #930000;
+        border-radius: 7px;
+
+        ::placeholder {
+          color: black;
+        }
       }
     }
 
@@ -64,9 +70,14 @@ export const Container = styled.div`
       border-bottom: 2px solid #930000;
 
       :focus{
-        box-shadow: 0px 6px 6px -5px red;
-        border-bottom: 2px solid red;
+        border-bottom: none;
+        background-color: #930000;
+        border-radius: 7px 7px 0px 0px;
       }
+    }
+
+    option {
+      background-color: #930000;
     }
   }
 `;
@@ -83,6 +94,8 @@ export const FilterInput = styled.div`
     color: white;
     font-family: 'Poppins';
     font-size: 14px;
+    transition: 0.4s;
+    transition-timing-function: ease;
   }
 
   label {
@@ -90,17 +103,19 @@ export const FilterInput = styled.div`
   }
 
   select {
-    background-color: transparent;
     height: 39px;
     color: white;
     width: 200px;
     border: none;
     font: 14px 'Poppins';
+    transition: 0.4s;
+    transition-timing-function: ease;
+    background-color: transparent;
   }
 
   option {
-    background-color: #181623;
-    border: 1px solid red;
+    padding: 10px 0px;
+    border: 1px solid red !important;
   }
 `;
 
