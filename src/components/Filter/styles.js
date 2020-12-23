@@ -66,8 +66,13 @@ export const Container = styled.div`
       }
     }
 
-    select {
+    .MuiMenuItem-root	 {
+      background-color: #930000 !important;
+    }
+
+    .MuiSelect-root {
       border-bottom: 2px solid #930000;
+
 
       :focus{
         border-bottom: none;
@@ -76,7 +81,7 @@ export const Container = styled.div`
       }
     }
 
-    option {
+    .MuiMenu-paper {
       background-color: #930000;
     }
   }
@@ -102,8 +107,7 @@ export const FilterInput = styled.div`
     font-size: 1rem;
   }
 
-  select {
-    height: 39px;
+  .MuiSelect-root {
     color: white;
     width: 200px;
     border: none;
@@ -138,4 +142,8 @@ export const ColorOption = styled.div`
 export const Colors = styled.div`
   display: block;
   padding: 10px 0px;
+`;
+
+export const MenuButton = styled.button`
+
 `;
