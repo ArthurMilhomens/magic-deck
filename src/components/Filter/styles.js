@@ -15,10 +15,12 @@ export const Container = styled.div`
 
   form {
     width: 100%;
-    padding: 20px 10px;
+    padding: 20px 10px 0 10px;
     height: 95vh;
     overflow-y: scroll;
     scrollbar-width: 0px;
+    display: flex;
+    flex-direction: column;
     ::-webkit-scrollbar {
       display: none;
     }
@@ -38,7 +40,7 @@ export const Container = styled.div`
     border: none;
     cursor: pointer;
     align-self: flex-end;
-    border-top-left-radius: 7px;
+    border-radius: 7px 7px 0 0;
   }
 
 //Avatar prefs
@@ -79,6 +81,19 @@ export const Container = styled.div`
     option {
       background-color: #930000;
     }
+
+    div {
+      ::-webkit-scrollbar-thumb {
+        background: red;
+      }
+      ::-webkit-scrollbar {
+        background-color: #930000;
+      }
+    }
+
+    .active {
+      background-color: red;
+    }
   }
 `;
 
@@ -86,6 +101,7 @@ export const FilterInput = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1.15rem;
+  width: 97%;
 
   input {
     height: 35px;
@@ -138,4 +154,16 @@ export const ColorOption = styled.div`
 export const Colors = styled.div`
   display: block;
   padding: 10px 0px;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 90%;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
 `;
