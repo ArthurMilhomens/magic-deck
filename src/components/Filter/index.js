@@ -10,6 +10,7 @@ import Red from '../../assets/mana/Red.png';
 import White from '../../assets/mana/White.png';
 import Green from '../../assets/mana/Green.png';
 import Colorless from '../../assets/mana/Colorless.png';
+import Loader from 'react-loader-spinner';
 
 function Filter({ setScreen, setCards }) {
 
@@ -17,10 +18,11 @@ function Filter({ setScreen, setCards }) {
 
   const [query, setQuery] = useState({ cardName: '', text: '', type: '', colors: '', manaCost: '' })
   const [colorOperator, setColorOperator] = useState('=');
+  const [loading, setLoading] = useState(false);
 
   const submit = e => {
     e.preventDefault();
-    console.log('inicio da req')
+    setLoading(true);
     magic.get('/cards/search?as=grid&order=name&q=' + query.cardName + `${query.text !== '' ? (' oracle:' + query.text) : ''}` + `${query.type !== '' ? (' type:' + query.type) : ''}` + `${query.colors !== '' ? (' color' + colorOperator + query.colors) : ''}` + `${query.manaCost !== '' ? (' mana:' + query.manaCost) : ''}`)
       .then(function (res) {
         console.log('teste ', res)
@@ -100,7 +102,7 @@ function Filter({ setScreen, setCards }) {
         </FilterInput>
       </Content>
 
-      <button type="submit">Search</button>
+      <button disabled={loading} type="submit">{loading ? <Loader type="ThreeDots" height={10} width={68} color="#930000"/> : 'Search'}</button>
     </form>
   </Container>;
 }

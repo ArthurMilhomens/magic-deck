@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.ul`
   display: block;
   width: 78%;
   overflow-y: scroll;
   scrollbar-width: 2px;
   margin: 20px 0;
+  list-style: none;
   
   ::-webkit-scrollbar {
     width: 2px;
@@ -19,7 +20,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Card = styled.div`
+export const Card = styled.li`
   max-width: 230px;
   max-height: 310px;
   overflow: hidden;
@@ -30,5 +31,10 @@ export const Card = styled.div`
   img {
     max-width: 100%;
     max-height: 100%;
+  }
+
+  :hover {
+    box-shadow: 0px 1px 8px red;
+    transition: 0.3s;
   }
 `;

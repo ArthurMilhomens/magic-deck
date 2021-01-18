@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { Container } from './styles';
 
@@ -23,7 +24,10 @@ function Home() {
   }, []);
 
   return <Container>
-    {screen ? <DeckList cards={cards}/> : <Filter setScreen={setScreen} setCards={setCards}/>}
+    {screen ?
+      <DeckList cards={cards} />
+      : <Filter setScreen={setScreen} setCards={setCards} />
+    }
     <Deck />
   </Container>;
 }
