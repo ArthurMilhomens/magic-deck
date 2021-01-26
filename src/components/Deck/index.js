@@ -4,7 +4,7 @@ import { Container } from './styles';
 
 function Deck() {
   return <Container>
-    Deck
+    deck
   </Container>;
 }
 

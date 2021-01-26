@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Card } from './styles';
 
-function DeckList() {
+function DeckList({ cards }) {
   return <Container>
-    DeckList
-  </Container>;
+    {cards && cards.map((e, i) => <Card key={i}><img alt={e.name} title={e.oracle_text} src={e.card_faces ? e.card_faces[0].image_uris.normal : e.image_uris.normal} /></Card>)}
+  </Container>
 }
 
 export default DeckList;

@@ -13,8 +13,9 @@ import Red from '../../assets/mana/Red.png';
 import White from '../../assets/mana/White.png';
 import Green from '../../assets/mana/Green.png';
 import Colorless from '../../assets/mana/Colorless.png';
+import Loader from 'react-loader-spinner';
 
-function Filter() {
+function Filter({ setScreen, setCards }) {
 
   const settings = JSON.parse(localStorage.getItem('char'));
 
@@ -33,9 +34,13 @@ function Filter() {
 
   const submit = e => {
     e.preventDefault();
-    magic.get('/cards/search?as=grid&order=name&q=' + query.cardName + `${query.text !== '' ? (' oracle:' + query.text) : ''}`)
+    setLoading(true);
+    magic.get('/cards/search?as=grid&order=name&q=' + query.cardName + `${query.text !== '' ? (' oracle:' + query.text) : ''}` + `${query.type !== '' ? (' type:' + query.type) : ''}` + `${query.colors !== '' ? (' color' + colorOperator + query.colors) : ''}` + `${query.manaCost !== '' ? (' mana:' + query.manaCost) : ''}`)
       .then(function (res) {
         console.log('teste ', res)
+        setCards(res.data.data)
+        setQuery({ cardName: '', text: '', type: '', colors: '', manaCost: '' })
+        setScreen(true)
       })
       .catch(function (err) {
         console.log(err)
@@ -87,79 +92,68 @@ function Filter() {
   return <Container>
     <h2 className={settings.avatar}>Filter</h2>
     <form onSubmit={submit} className={settings.avatar}>
-      <FilterInput>
-        <label>Card Name</label>
-        <input placeholder='"Ugin, Valkas, Nicol Bolas..."' type="text" onChange={e => setQuery({ ...query, cardName: e.target.value })} />
-      </FilterInput>
+      <Content>
 
-      <FilterInput>
-        <label>Text</label>
-        <input placeholder='"Draw a card, Flying, Exile..."' type="text" onChange={e => setQuery({ ...query, text: e.target.value })} />
-      </FilterInput>
+        <FilterInput>
+          <label>Card Name</label>
+          <input placeholder='"Ugin, Valkas, Nicol Bolas..."' type="text" onChange={e => setQuery({ ...query, cardName: e.target.value })} />
+        </FilterInput>
 
-      <FilterInput>
-        <label>Type</label>
-        <input placeholder='"Creature, Dragon, Instant..."' type="text" onChange={e => setQuery({ ...query, type: e.target.value })} />
-      </FilterInput>
+        <FilterInput>
+          <label>Text</label>
+          <input placeholder='"Draw a card, Flying, Exile..."' type="text" onChange={e => setQuery({ ...query, text: e.target.value })} />
+        </FilterInput>
 
-      <FilterInput>
-        <label>Colors</label>
-        <div>
-          <Colors>
-            <ColorOption>
-              <img src={White} alt="Mana Branca" />
-              <p>White</p>
-            </ColorOption>
-            <ColorOption>
-              <img src={Blue} alt="Mana Azul" />
-              <p>Blue</p>
-            </ColorOption>
-            <ColorOption>
-              <img src={Black} alt="Mana Preta" />
-              <p>Black</p>
-            </ColorOption>
-            <ColorOption>
-              <img src={Red} alt="Mana Vermelha" />
-              <p>Red</p>
-            </ColorOption>
-            <ColorOption>
-              <img src={Green} alt="Mana Verde" />
-              <p>Green</p>
-            </ColorOption>
-            <ColorOption>
-              <img src={Colorless} alt="Mana Incolor" />
-              <p>Colorless</p>
-            </ColorOption>
-          </Colors>
-          <MenuButton onClick={handleClick}>{query.select}</MenuButton>
-          <StyledMenu
-            value={query.select}
-            id="customized-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <StyledMenuItem value="Exactly these colors" onClick={e => setQuery({ ...query, select: "Exactly these colors" })}>
-              Exactly these colors
-            </StyledMenuItem>
-            <StyledMenuItem value="Including these colors" onClick={e => setQuery({ ...query, select: "Including these colors" })}>
-              Including these colors
-            </StyledMenuItem>
-            <StyledMenuItem value="At most these colors" onClick={e => setQuery({ ...query, select: "At most these colors" })}>
-              At most these colors
-            </StyledMenuItem>
-          </StyledMenu>
-        </div>
-      </FilterInput>
+        <FilterInput>
+          <label>Type</label>
+          <input placeholder='"Creature, Dragon, Instant..."' type="text" onChange={e => setQuery({ ...query, type: e.target.value })} />
+        </FilterInput>
 
-      <FilterInput>
-        <label>Mana cost</label>
-        <input placeholder='Ex. "{2}{R}{U}" - {U} Blue, {B} Black, {R} Red, {G} Green, {W} White' type="text" onChange={e => setQuery({ ...query, manaCost: e.target.value })} />
-      </FilterInput>
+        <FilterInput>
+          <label>Colors</label>
+          <div>
+            <Colors>
+              <ColorOption onClick={() => addColorsToSearch('W')} className={query.colors.includes('W') && ' active'} >
+                <img src={White} alt="Mana Branca" />
+                <p>White</p>
+              </ColorOption>
+              <ColorOption onClick={() => addColorsToSearch('U')} className={query.colors.includes('U') && ' active'} >
+                <img src={Blue} alt="Mana Azul" />
+                <p>Blue</p>
+              </ColorOption>
+              <ColorOption onClick={() => addColorsToSearch('B')} className={query.colors.includes('B') && ' active'} >
+                <img src={Black} alt="Mana Preta" />
+                <p>Black</p>
+              </ColorOption>
+              <ColorOption onClick={() => addColorsToSearch('R')} className={query.colors.includes('R') && ' active'} >
+                <img src={Red} alt="Mana Vermelha" />
+                <p>Red</p>
+              </ColorOption>
+              <ColorOption onClick={() => addColorsToSearch('G')} className={query.colors.includes('G') && ' active'} >
+                <img src={Green} alt="Mana Verde" />
+                <p>Green</p>
+              </ColorOption>
+              <ColorOption onClick={() => addColorsToSearch('C')} className={query.colors.includes('C') && ' active'} >
+                <img src={Colorless} alt="Mana Incolor" />
+                <p>Colorless</p>
+              </ColorOption>
+            </Colors>
+            <select>
+              <option onClick={() => setColorOperator('=')}>Exactly these colors</option>
+              <option onClick={() => setColorOperator('>=')}>Including these colors</option>
+              <option onClick={() => setColorOperator('<=')}>At most these colors</option>
+            </select>
+          </div>
+        </FilterInput>
 
+        <FilterInput>
+          <label>Mana cost</label>
+          <input placeholder='Ex. "{2}{R}{U}" - {U} Blue, {B} Black, {R} Red, {G} Green, {W} White, {C} Colorless' type="text" onChange={e => setQuery({ ...query, manaCost: e.target.value })} />
+        </FilterInput>
+      </Content>
+
+      <button disabled={loading} type="submit">{loading ? <Loader type="ThreeDots" height={10} width={68} color="#930000"/> : 'Search'}</button>
     </form>
-    <button type="submit">Search</button>
   </Container>;
 }
 

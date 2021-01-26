@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { Container } from './styles';
 
@@ -9,7 +10,8 @@ import magic from '../../services/magic';
 
 function Home() {
 
-  const [deck, setDeck] = useState(localStorage.getItem('deck'));
+  const [screen, setScreen] = useState(localStorage.getItem('deck'));
+  const [cards, setCards] = useState(localStorage.getItem('deck'));
 
   useEffect(() => {
     magic.get('/cards/5c3d57d1-1031-45e0-97d1-8e8e3e6ab516')
@@ -22,7 +24,10 @@ function Home() {
   }, []);
 
   return <Container>
-    {deck ? <DeckList /> : <Filter />}
+    {screen ?
+      <DeckList cards={cards} />
+      : <Filter setScreen={setScreen} setCards={setCards} />
+    }
     <Deck />
   </Container>;
 }

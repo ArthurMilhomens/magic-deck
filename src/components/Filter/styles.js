@@ -15,10 +15,12 @@ export const Container = styled.div`
 
   form {
     width: 100%;
-    padding: 20px 10px;
+    padding: 20px 10px 0 10px;
     height: 95vh;
     overflow-y: scroll;
     scrollbar-width: 0px;
+    display: flex;
+    flex-direction: column;
     ::-webkit-scrollbar {
       display: none;
     }
@@ -38,7 +40,7 @@ export const Container = styled.div`
     border: none;
     cursor: pointer;
     align-self: flex-end;
-    border-top-left-radius: 7px;
+    border-radius: 7px 7px 0 0;
   }
 
 //Avatar prefs
@@ -84,6 +86,19 @@ export const Container = styled.div`
     .MuiMenu-paper {
       background-color: #930000;
     }
+
+    div {
+      ::-webkit-scrollbar-thumb {
+        background: red;
+      }
+      ::-webkit-scrollbar {
+        background-color: #930000;
+      }
+    }
+
+    .active {
+      background-color: red;
+    }
   }
 `;
 
@@ -91,6 +106,7 @@ export const FilterInput = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1.15rem;
+  width: 97%;
 
   input {
     height: 35px;
