@@ -25,7 +25,7 @@ function Filter({ setScreen, setCards }) {
   const submit = e => {
     e.preventDefault();
     setLoading(true);
-    magic.get('/cards/search?as=grid&order=name&q=' + query.cardName + `${query.text !== '' ? (' oracle:' + query.text) : ''}` + `${query.type !== '' ? (' type:' + query.type) : ''}` + `${query.colors !== '' ? (' color' + colorOperator + query.colors) : ''}` + `${query.manaCost !== '' ? (' mana:' + query.manaCost) : ''}`)
+    magic.get('/cards/search?page=1&as=grid&order=name&q=' + query.cardName + `${query.text !== '' ? (' oracle:' + query.text) : ''}` + `${query.type !== '' ? (' type:' + query.type) : ''}` + `${query.colors !== '' ? (' color' + colorOperator + query.colors) : ''}` + `${query.manaCost !== '' ? (' mana:' + query.manaCost) : ''}`)
       .then(function (res) {
         console.log('teste ', res)
         setCards(res.data.data)

@@ -15,7 +15,7 @@ export const Container = styled.div`
 
   form {
     width: 100%;
-    padding: 20px 10px 0 10px;
+    padding: 20px 0 0 10px;
     height: 95vh;
     overflow-y: scroll;
     scrollbar-width: 0px;
