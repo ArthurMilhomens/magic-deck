@@ -160,6 +160,14 @@ export const Colors = styled.div`
   padding: 10px 0px;
 `;
 
-export const MenuButton = styled.button`
-
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 90%;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
 `;

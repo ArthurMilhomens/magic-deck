@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import magic from '../../services/magic';
 
-import { Container, FilterInput, ColorOption, Colors, MenuButton } from './styles';
+import { Container, FilterInput, ColorOption, Colors, Content } from './styles';
 
 import Blue from '../../assets/mana/blue.png';
 import Black from '../../assets/mana/Black.png';
@@ -18,19 +18,9 @@ import Loader from 'react-loader-spinner';
 function Filter({ setScreen, setCards }) {
 
   const settings = JSON.parse(localStorage.getItem('char'));
-
-
-  const [query, setQuery] = useState({ cardName: '', text: '', type: '', colors: '', manaCost: '', select: "Exactly these colors" })
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const [query, setQuery] = useState({ cardName: '', text: '', type: '', colors: '', manaCost: '' })
+  const [colorOperator, setColorOperator] = useState('=');
+  const [loading, setLoading] = useState(false);
 
   const submit = e => {
     e.preventDefault();
@@ -47,47 +37,9 @@ function Filter({ setScreen, setCards }) {
       })
   };
 
-  const StyledMenuItem = withStyles((theme) => ({
-    root: {
-      backgroundColor: "#930000",
-      '&:focus': {
-        backgroundColor: "#930000",
-        '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-          color: "white",
-          backgroundColor: "#930000"
-        },
-      },
-      '&:hover': {
-        backgroundColor: "red",
-      },
-      '&.Mui-selected': {
-        backgroundColor: "#930000",
-        '&:hover': {
-          backgroundColor: "red",
-        }
-      },
-    },
-  }))(MenuItem);
-
-  const StyledMenu = withStyles({
-    paper: {
-      backgroundColor: '#930000',
-    },
-  })((props) => (
-    <Menu
-      elevation={0}
-      getContentAnchorEl={null}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
-      }}
-      {...props}
-    />
-  ));
+  function addColorsToSearch(color){
+    setQuery({...query, colors: query.colors.includes(color) ? query.colors.replace(color, '') : (query.colors.concat(color))})
+  }
 
   return <Container>
     <h2 className={settings.avatar}>Filter</h2>
